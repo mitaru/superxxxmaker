@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喘ぎ声メーカー</title>
+</head>
+
+<body>
+  <h3>喘ぎ声メーカープロトタイプ</h1>
+    <ul id="list">
+    </ul>
+
+    <button onclick="shuffle()">生成！</button>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <p id="result3"></p>
+    <p id="result4"></p>
+    <p id="result5"></p>
+
+
+    <script>
+      Array.prototype.shuffle = function () {
+        var i = this.length;
+        while (i) {
+          var j = Math.floor(Math.random() * i);
+          var t = this[--i];
+          this[i] = this[j];
+          this[j] = t;
+        }
+        return this;
+      }
+
+      var words = ['あっ…', 'やっ', 'そん', '…っ', 'だめ', '♡', '……', 'ぅ', 'ン、', 'ふ',];
+
+      function shuffle() {
+        words.shuffle();
+        document.getElementById('result1').innerText = words.join('');
+        words.shuffle();
+        document.getElementById('result2').innerText = words.join('');
+        words.shuffle();
+        document.getElementById('result3').innerText = words.join('');
+        words.shuffle();
+        document.getElementById('result4').innerText = words.join('');
+        words.shuffle();
+        document.getElementById('result5').innerText = words.join('');
+      }
+
+      for (var i = 0; i < words.length; i++) {
+        var li = document.createElement('li');
+        li.textContent = words[i];
+        document.getElementById('list').append(li);
+      }
+
+    </script>
+</body>
+
+</html>
