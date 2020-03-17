@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>スーパー喘ぎ声メーカー</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    .jumbotron {
+      padding: 2rem 2rem;
+    }
+
+    .clipboard-target {
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light" style="background-color: #37AB9D;">
+    <a class="navbar-brand" href="#" style="color: #fff;">スーパー喘ぎ声メーカー</a>
+  </nav>
+
+  <div class="container">
+    <div class="jumbotron mt-4 bg-light">
+      <p>単語をランダムに組み合わせて君だけの喘ぎ声を作ろう！</p>
+      <form class="form-inline mb-4">
+        <div class="form-group mr-3 mb-2">
+          <label for="inputPassword2" class="sr-only">追加したい単語</label>
+          <input type="text" class="form-control" id="inputPassword2" placeholder="追加したい単語">
+        </div>
+        <button type="submit" class="btn btn-warning mb-2">追加</button>
+      </form>
+      <ul>
+        <li>あっ</li>
+        <li>やっ</li>
+        <li>そん</li>
+      </ul>
+      <hr class="my-4">
+      <div class="d-flex flex-column flex-md-row">
+        <button type="button" class="btn btn-outline-secondary flex-fill flex-md-grow-0 mr-md-3 mb-2">リセット</button>
+        <button type="button" class="btn btn-warning flex-fill flex-md-grow-0 mt-1 mt-md-0 mb-2">実行</button>
+      </div>
+    </div>
+    <h5 class="mb-2">結果</h5>
+
+
+
+    <ul class="mb-5">
+      <!-- 前の -->
+      <!-- <li class="rndResult mb-2">
+        <div id="clipboard-target1" class="clipboard-target">おおおおおおおおおおおおおおおおおおおおおおおお</div>
+        <div class="btn btn-warning btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
+          data-clipboard-target="#clipboard-target1">
+          コピー
+        </div>
+      </li> -->
+      <li id="clipboard-target1" class="rndResult mb-2">
+        おおおおおおおおおおおおおおおおおおおおおおおお
+        <span class="btn btn-warning btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
+          data-clipboard-target="#clipboard-target1">
+          コピー
+        </span>
+      </li>
+      <li id="clipboard-target2" class="rndResult mb-2">
+        ぬわああああん
+        <span class="btn btn-warning btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
+          data-clipboard-target="#clipboard-target2">
+          コピー
+        </span>
+      </li>
+      <li id="clipboard-target3" class="rndResult mb-2">
+        ウッ！ウッ！ウーゥホ・・・ヴヴヴゥォ
+        <span class="btn btn-warning btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
+          data-clipboard-target="#clipboard-target3">
+          コピー
+        </span>
+      </li>
+    </ul>
+
+    <!-- ツイートボタン -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="【ページのURL】" data-text="【ツイート本文】"
+      data-via="【ユーザ名】" data-size="large" data-related="【ユーザ名】" data-count="【カウント表示の種類】"
+      data-hashtags="【ハッシュタグ】">Tweet</a>
+
+  </div><!-- /.container -->
+
+  <!-- bootstrap4 -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+    integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+    crossorigin="anonymous"></script>
+  <!-- clipboard.js -->
+  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+  <!-- JavaScript -->
+  <script>
+    // コピーするトリガー
+    new ClipboardJS('.btn-clipboard');
+
+    // ツールチップ表示
+    $('.btn-clipboard')
+      // Tooltipの設定
+      .tooltip({
+        title: 'コピーしました!',
+        placement: 'right',
+        trigger: 'manual'
+      })
+      // Tooltip表示後の動作を設定
+      .on('shown.bs.tooltip', function () {
+        setTimeout((function () {
+          $(this).tooltip('hide');
+        }).bind(this), 500);
+      })
+      // クリック時の動作を設定
+      .on('click', function () {
+        $(this).tooltip('show'); // Tooltipを表示する
+      });
+
+    // ツイートボタン
+    !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
+  </script>
+</body>
+
+</html>
