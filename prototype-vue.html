@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>喘ぎ声メーカー</title>
+  <style>
+    body {
+      font-size: 16px;
+      font-family: Verdana, sans-serif;
+    }
+
+    .container {
+      width: 820px;
+      margin: auto;
+    }
+
+    .header {
+      background: #333;
+      border-radius: 4px;
+      color: white;
+      padding: 10px !important;
+    }
+
+    .left {
+      width: 400px;
+      float: left;
+    }
+
+    .right {
+      width: 400px;
+      float: left;
+      padding-left: 20px;
+    }
+
+    #app h1 {
+      font-size: 16px;
+      border-bottom: 1px solid #ddd;
+      padding: 16px 0;
+    }
+
+    #app li {
+      line-height: 1.5;
+    }
+
+    #app input[type="text"] {
+      padding: 2px;
+      margin-top: 10px;
+      margin-left: 35px;
+    }
+
+    .command {
+      font-size: 12px;
+      cursor: pointer;
+      color: #08c;
+    }
+
+    .generateBtn {
+      margin: 10px 0 0 35px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app" class="container">
+    <h1 class="header">喘ぎ声メーカー</h1>
+    <div class="left">
+      <h1>使用する単語</h1>
+      <form @submit.prevent="addItem">
+        <input type="text" v-model="newItem">
+        <input type="submit" value="追加">
+      </form>
+      <ul>
+        <li v-for="(word, index) in words">
+          {{ word }}
+          <span @click="deleteItem(index)" class="command">[x]</span>
+        </li>
+      </ul>
+    </div>
+    <div class="right">
+      <h1>結果</h1>
+      <ul>
+        <li v-for="(word, index) in words.length">
+          <span v-for="n in words.length" class="result">{{ random() }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          newItem: '',
+          words: [
+            'あっ',
+            'やっ',
+            'んっ…',
+            'っ',
+            '♡',
+            '、',
+          ]
+        },
+        methods: {
+          addItem: function () {
+            this.words.push(this.newItem);
+            this.newItem = '';
+          },
+          deleteItem: function (index) {
+            this.words.splice(index, 1);
+          },
+          'random': function () {
+            const rnd = Math.floor(Math.random() * this.words.length);
+            return this.words[rnd];
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>
