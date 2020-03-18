@@ -28,7 +28,7 @@
       padding: 2rem 2rem;
       background: #fff;
     }
-    
+
     .command {
       font-size: 15px;
       cursor: pointer;
@@ -61,7 +61,7 @@
     <div class="jumbotron mt-4">
       <p class="lead">単語をランダムに組み合わせて君だけの喘ぎ声を作ろう！</p>
       <p class="mb-4">この喘ぎ声の組み合わせさっきも書いたな？となりがちな貴方に。<br>
-      仕様上、入力欄の編集をしただけで結果が再生成されてしまいます。ご了承ください。</p>
+        仕様上、入力欄の編集をしただけで結果が再生成されてしまいます。ご了承ください。</p>
       <form class=" mb-4 d-flex flex-column flex-md-row" @submit.prevent="addItem">
         <div class="form-group mb-2 flex-column flex-fill flex-md-grow-0 wordInput">
           <label for="inputPassword2" class="sr-only">追加したい単語</label>
@@ -69,7 +69,7 @@
         </div>
         <button type="submit" class="btn btn-success mb-2 flex-fill flex-md-grow-0">追加＆生成</button>
       </form>
-      <ul>
+      <ul v-if="array.length">
         <li v-for="(word, index) in array">
           {{ word }}
           <span @click="deleteItem(index)" class="command">
@@ -77,7 +77,7 @@
           </span>
         </li>
       </ul>
-      <span v-if="array.length === 0">単語を追加してください。</span>
+      <span v-else>単語を追加してください。</span>
       <hr class="my-4">
       <div class="d-flex flex-column flex-md-row">
         <button type="button" class="btn btn-outline-secondary flex-fill flex-md-grow-0 mr-md-3"
@@ -86,74 +86,11 @@
     </div>
     <h4 class="mb-2">結果</h4>
     <hr>
-    <ul v-if="array.length > 0">
-      <li id="clipboard-target1" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
+    <ul v-if="array.length">
+      <li v-bind:id="`clipboard-target${n}`" class="clipboard-target mb-2" v-for="n in 10">
+        <span>{{ shuffle(array) }}</span>
         <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target1">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target2" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target2">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target3" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target3">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target4" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target4">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target5" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target5">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target6" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target6">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target7" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target7">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target8" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target8">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target9" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target9">
-          コピー
-        </div>
-      </li>
-      <li id="clipboard-target10" class="clipboard-target mb-2">
-        <span class="result">{{ shuffle(array) }}</span>
-        <div class="btn btn-danger btn-sm ml-3 btn-clipboard" data-toggle="tooltip"
-          data-clipboard-target="#clipboard-target10">
+          v-bind:data-clipboard-target="`#clipboard-target${n}`">
           コピー
         </div>
       </li>
@@ -161,16 +98,17 @@
     <span v-else>単語を追加してください。</span>
     <!-- ツイートボタン -->
     <div class="contact ml-4 mt-3">
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://mitaru.github.io/superxxxmaker/index.html" data-text="みんなもスーパー喘ぎ声メーカーで遊ぼう！" data-size="large">Tweet</a>
+      <a href="https://twitter.com/share" class="twitter-share-button"
+        data-url="https://mitaru.github.io/superxxxmaker/index.html" data-text="みんなもスーパー喘ぎ声メーカーで遊ぼう！"
+        data-size="large">Tweet</a>
     </div>
-    
+
     <footer class="my-1 pt-5 text-muted text-center text-small">
       <ul class="list-inline">
-        <li class="list-inline-item">
-          <p class="mb-1">&copy; 境みたる</p>
-        </li>
-        <li class="list-inline-item"><a href="https://twitter.com/SakaiMitaru"><i class="fab fa-twitter-square mr-1"></i>SakaiMitaru</a></li>
-        <li class="list-inline-item"><a href="https://github.com/mitaru/superxxxmaker.git"><i class="fab fa-github"></i></a></li>
+        <li class="list-inline-item"><a href="https://twitter.com/SakaiMitaru"><i
+              class="fab fa-twitter-square mr-1"></i>SakaiMitaru</a></li>
+        <li class="list-inline-item"><a href="https://github.com/mitaru/superxxxmaker.git"><i
+              class="fab fa-github"></i></a></li>
       </ul>
     </footer>
   </div><!-- /.container -->
