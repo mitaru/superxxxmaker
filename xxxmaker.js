@@ -11,6 +11,17 @@
         'んっ…',
       ],
     },
+    watch: {
+      array: {
+        handler: function () {
+          localStorage.setItem('array', JSON.stringify(this.array));
+        },
+        deep: true
+      }
+    },
+    mounted: function () {
+      this.array = JSON.parse(localStorage.getItem('array')) || [];
+    },
     methods: {
       addItem: function () {
         this.array.push(this.newItem);
