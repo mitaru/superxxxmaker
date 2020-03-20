@@ -6,10 +6,11 @@
     data: {
       newItem: '',
       array: [
-        'やっ',
-        'あっ',
-        'んっ…',
+        'ああ',
+        'いい',
+        'ええ',
       ],
+      voiceList: [],
     },
     watch: {
       array: {
@@ -23,28 +24,36 @@
       this.array = JSON.parse(localStorage.getItem('array')) || [];
     },
     methods: {
-      addItem: function () {
+      addItem() {
         this.array.push(this.newItem);
         this.newItem = '';
       },
-      deleteItem: function (index) {
+      deleteItem(index) {
         this.array.splice(index, 1);
       },
-      shuffle: function (array) {
-        var sArray = [];
-        sArray = array.slice(0, array.length);
-        var n = sArray.length, t, i;
+      generate() {
+        const a = [...this.array];
+        this.voiceList.splice(0, this.voiceList.length);
+
+        for (let i = 0; i < 10; i++) {
+          this.shuffle(a);
+          this.voiceList.push(a.join(''));
+        }
+      },
+      shuffle(array) {
+        var n = array.length, t, i;
         while (n) {
           i = Math.floor(Math.random() * n--);
-          t = sArray[n];
-          sArray[n] = sArray[i];
-          sArray[i] = t;
+          t = array[n];
+          array[n] = array[i];
+          array[i] = t;
         }
-        return sArray.join('');
+        return array;
       },
       reset: function () {
-        this.array = []
-      }
+        this.array = [];
+        this.voiceList = []
+      },
     }
   });
 
@@ -69,8 +78,5 @@
     .on('click', function () {
       $(this).tooltip('show'); // Tooltipを表示する
     });
-
-  // ツイートボタン
-  !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
 
 })();
