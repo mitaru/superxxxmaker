@@ -6,9 +6,9 @@
     data: {
       newItem: '',
       array: [
-        'ああ',
-        'いい',
-        'ええ',
+        'やっ',
+        'あっ',
+        'んっ…',
       ],
       voiceList: [],
     },
@@ -16,6 +16,7 @@
       array: {
         handler: function () {
           localStorage.setItem('array', JSON.stringify(this.array));
+          localStorage.setItem('voiceList', JSON.stringify(this.voiceList));
         },
         deep: true
       }
@@ -78,5 +79,8 @@
     .on('click', function () {
       $(this).tooltip('show'); // Tooltipを表示する
     });
+
+  // twitter投稿
+  !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
 
 })();
